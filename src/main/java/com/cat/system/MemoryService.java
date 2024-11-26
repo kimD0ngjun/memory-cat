@@ -8,7 +8,20 @@ public class MemoryService {
         try {
             System.loadLibrary("native-lib");
         } catch (UnsatisfiedLinkError e) {
-            throw new RuntimeException("네이티브 라이브러리 실행 실패: native-lib", e);
+            throw new RuntimeException("네이티브 라이브러리 호출 실패: native-lib", e);
+        }
+    }
+
+    public double getUsedMemoryInMB() {
+        return getUsedMemory() / (1024.0 * 1024.0);
+    }
+
+    public int getUsedMemorySafe() {
+        try {
+            return getUsedMemory();
+        } catch (UnsatisfiedLinkError | RuntimeException e) {
+            System.err.println(e.getMessage());
+            return -1; // 기본값 반환
         }
     }
 }
