@@ -3,6 +3,7 @@ package com.cat.system;
 public class MemoryService {
 
     public native int getUsedMemory();
+    public native int getTotalMemory();
 
     static {
         try {
@@ -15,6 +16,15 @@ public class MemoryService {
     public int getUsedMemorySafe() {
         try {
             return getUsedMemory();
+        } catch (UnsatisfiedLinkError | RuntimeException e) {
+            System.err.println(e.getMessage());
+            return -1; // 기본값 반환
+        }
+    }
+
+    public int getTotalMemorySafe() {
+        try {
+            return getTotalMemory();
         } catch (UnsatisfiedLinkError | RuntimeException e) {
             System.err.println(e.getMessage());
             return -1; // 기본값 반환
