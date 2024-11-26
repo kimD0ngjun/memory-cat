@@ -2,20 +2,28 @@ package com.cat.controller;
 
 
 import com.cat.model.cat.CatModel;
+import com.cat.system.MemoryService;
 import com.cat.view.CatView;
 
 public class MemoryCatController {
 
     private final CatView view = new CatView();
+    private final MemoryService memoryService = new MemoryService();
 
     public void runAnimation() {
         Thread animationThread = Thread.ofVirtual().start(() -> {
-            CatModel catModel = new CatModel();
-
-            String[] frameArray = catModel.getSleepingCatFrame(String.valueOf(16));
-
-            try {
+                        try {
                 while (true) { // 무한 반복
+                    int usedMemory = memoryService.getUsedMemorySafe();
+
+                    if (usedMemory < 0) {
+                        System.err.println("메모리 정보를 가져올 수 없습니다. 기본 값을 사용합니다.");
+                        usedMemory = 0; // 기본값 설정
+                    }
+
+                    CatModel catModel = new CatModel();
+                    String[] frameArray = catModel.getSleepingCatFrame(String.valueOf(usedMemory));
+
                     for (String frame : frameArray) {
                         view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기
                         view.displayFrame(frame); // 새로운 프레임 출력
