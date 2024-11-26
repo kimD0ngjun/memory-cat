@@ -2,7 +2,6 @@ package com.cat.controller;
 
 
 import com.cat.model.cat.CatModel;
-import com.cat.model.system.MemoryDTO;
 import com.cat.system.MemoryService;
 import com.cat.view.CatView;
 
@@ -15,10 +14,11 @@ public class MemoryCatController {
         Thread animationThread = Thread.ofVirtual().start(() -> {
                         try {
                 while (true) { // 무한 반복
-                    MemoryDTO memoryDTO = memoryService.getMemoryUsageSafe();
+                    String value = memoryService.getMemoryUsageSafe();
+                    String[] memoryDTO = value.split("&");
 
                     // KB 단위
-                    int usedMemoryKb = memoryDTO.usageMemory();
+                    int usedMemoryKb = Integer.parseInt(memoryDTO[0]);
 
                     // GB 단위 (소수점 둘째 자리까지 반올림)
                     double usedMemoryGb = (double) usedMemoryKb / (1024 * 1024);
