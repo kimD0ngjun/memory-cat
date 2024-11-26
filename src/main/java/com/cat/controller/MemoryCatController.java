@@ -26,18 +26,16 @@ public class MemoryCatController {
                     usedMemoryGb = Math.round(usedMemoryGb * 100.0) / 100.0;
                     totalMemoryGb = Math.round(totalMemoryGb * 100.0) / 100.0;
 
-                    // DTO 생성
-                    MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
-
                     if (usedMemoryGb < 0) {
                         System.err.println("메모리 정보를 가져올 수 없습니다. 기본 값을 사용합니다.");
                         usedMemoryGb = 0; // 기본값 설정
                     }
 
-                    String temp = usedMemoryGb + " & "  + totalMemoryGb;
+                    // DTO 생성
+                    MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
 
                     CatModel catModel = new CatModel();
-                    String[] frameArray = catModel.getSleepingCatFrame(temp);
+                    String[] frameArray = catModel.getSleepingCatFrame(memoryDTO);
 
                     for (String frame : frameArray) {
                         view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기
