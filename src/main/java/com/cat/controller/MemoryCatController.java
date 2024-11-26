@@ -34,7 +34,7 @@ public class MemoryCatController {
                     MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
 
                     CatModel catModel = new CatModel();
-                    String[] frameArray = catModel.getSleepingCatFrame(memoryDTO);
+                    String[] frameArray = catModel.getCatFrame(memoryDTO);
 
                     for (String frame : frameArray) {
                         // 화면을 지우고 새 프레임을 출력
