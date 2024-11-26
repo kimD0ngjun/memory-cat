@@ -1,4 +1,4 @@
-package model.cat;
+package com.cat.model.cat;
 
 public class CatModel {
 

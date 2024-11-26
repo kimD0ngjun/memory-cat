@@ -1,4 +1,4 @@
-package view;
+package com.cat.view;
 
 public class CatView {
 

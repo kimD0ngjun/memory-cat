@@ -1,4 +1,4 @@
-package controller;
+package com.cat.controller;
 
 import model.cat.CatModel;
 import view.CatView;
