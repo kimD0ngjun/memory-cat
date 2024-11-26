@@ -2,6 +2,7 @@ package com.cat.controller;
 
 
 import com.cat.model.cat.CatModel;
+import com.cat.model.system.MemoryDTO;
 import com.cat.system.MemoryService;
 import com.cat.view.CatView;
 
@@ -24,6 +25,9 @@ public class MemoryCatController {
 
                     usedMemoryGb = Math.round(usedMemoryGb * 100.0) / 100.0;
                     totalMemoryGb = Math.round(totalMemoryGb * 100.0) / 100.0;
+
+                    // DTO 생성
+                    MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
 
                     if (usedMemoryGb < 0) {
                         System.err.println("메모리 정보를 가져올 수 없습니다. 기본 값을 사용합니다.");
