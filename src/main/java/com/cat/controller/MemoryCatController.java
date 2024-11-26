@@ -20,15 +20,20 @@ public class MemoryCatController {
 
                     // GB 단위 (소수점 둘째 자리까지 반올림)
                     double usedMemoryGb = (double) usedMemoryKb / (1024 * 1024);
+                    double totalMemoryGb = (double) totalMemoryKb / (1024 * 1024);
+
                     usedMemoryGb = Math.round(usedMemoryGb * 100.0) / 100.0;
+                    totalMemoryGb = Math.round(totalMemoryGb * 100.0) / 100.0;
 
                     if (usedMemoryGb < 0) {
                         System.err.println("메모리 정보를 가져올 수 없습니다. 기본 값을 사용합니다.");
                         usedMemoryGb = 0; // 기본값 설정
                     }
 
+                    String temp = usedMemoryGb + " & "  + totalMemoryGb;
+
                     CatModel catModel = new CatModel();
-                    String[] frameArray = catModel.getSleepingCatFrame(String.valueOf(usedMemoryGb));
+                    String[] frameArray = catModel.getSleepingCatFrame(temp);
 
                     for (String frame : frameArray) {
                         view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기
