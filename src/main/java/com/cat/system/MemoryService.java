@@ -1,8 +1,9 @@
 package com.cat.system;
 
-public class MemoryService {
+import com.cat.model.system.MemoryDTO;
 
-    public native int getUsedMemory();
+public class MemoryService {
+    public native MemoryDTO getMemoryUsage();
 
     static {
         try {
@@ -12,16 +13,13 @@ public class MemoryService {
         }
     }
 
-    public double getUsedMemoryInMB() {
-        return getUsedMemory() / (1024.0 * 1024.0);
-    }
-
-    public int getUsedMemorySafe() {
+    // MemoryDTO 반환
+    public MemoryDTO getMemoryUsageSafe() {
         try {
-            return getUsedMemory();
+            return getMemoryUsage();
         } catch (UnsatisfiedLinkError | RuntimeException e) {
             System.err.println(e.getMessage());
-            return -1; // 기본값 반환
+            return new MemoryDTO(-1, -1); // 기본값 반환
         }
     }
 }
