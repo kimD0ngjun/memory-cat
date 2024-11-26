@@ -14,11 +14,9 @@ public class MemoryCatController {
         Thread animationThread = Thread.ofVirtual().start(() -> {
                         try {
                 while (true) { // 무한 반복
-                    String value = memoryService.getMemoryUsageSafe();
-                    String[] memoryDTO = value.split("&");
-
                     // KB 단위
-                    int usedMemoryKb = Integer.parseInt(memoryDTO[0]);
+                    int usedMemoryKb = memoryService.getUsedMemorySafe();
+                    int totalMemoryKb = memoryService.getTotalMemorySafe();
 
                     // GB 단위 (소수점 둘째 자리까지 반올림)
                     double usedMemoryGb = (double) usedMemoryKb / (1024 * 1024);
