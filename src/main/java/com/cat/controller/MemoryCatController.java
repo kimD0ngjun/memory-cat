@@ -1,6 +1,5 @@
 package com.cat.controller;
 
-
 import com.cat.model.cat.CatModel;
 import com.cat.model.system.MemoryDTO;
 import com.cat.system.MemoryService;
@@ -13,7 +12,7 @@ public class MemoryCatController {
 
     public void runAnimation() {
         Thread animationThread = Thread.ofVirtual().start(() -> {
-                        try {
+            try {
                 while (true) { // 무한 반복
                     // KB 단위
                     int usedMemoryKb = memoryService.getUsedMemorySafe();
@@ -35,12 +34,13 @@ public class MemoryCatController {
                     MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
 
                     CatModel catModel = new CatModel();
-                    String[] frameArray = catModel.getCatFrame(memoryDTO);
+                    String[] frameArray = catModel.getSleepingCatFrame(memoryDTO);
 
                     for (String frame : frameArray) {
-                        view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기
+                        // 화면을 지우고 새 프레임을 출력
+                        view.clearScreen(); // 화면을 전부 지우기
                         view.displayFrame(frame); // 새로운 프레임 출력
-                        Thread.sleep(750);
+                        Thread.sleep(750); // 750ms 동안 프레임을 유지
                     }
                 }
             } catch (InterruptedException e) {
