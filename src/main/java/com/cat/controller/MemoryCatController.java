@@ -35,7 +35,7 @@ public class MemoryCatController {
                     MemoryDTO memoryDTO = new MemoryDTO(usedMemoryGb, totalMemoryGb);
 
                     CatModel catModel = new CatModel();
-                    String[] frameArray = catModel.getSleepingCatFrame(memoryDTO);
+                    String[] frameArray = catModel.getCatFrame(memoryDTO);
 
                     for (String frame : frameArray) {
                         view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기

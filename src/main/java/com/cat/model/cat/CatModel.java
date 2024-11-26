@@ -4,10 +4,17 @@ import com.cat.model.system.MemoryDTO;
 
 public class CatModel {
 
-    public String[] getSleepingCatFrame(MemoryDTO memoryDTO) {
+    public String[] getCatFrame(MemoryDTO memoryDTO) {
 
         double usedMemoryGb = memoryDTO.usedMemory();
+        double percent = memoryDTO.getPercentUsedMemory();
 
+        if (percent >= 0.83) return getWakeUpCatFrame(usedMemoryGb);
+
+        return getSleepingCatFrame(usedMemoryGb);
+    }
+
+    private String[] getSleepingCatFrame(double usedMemoryGb) {
         return new String[]{
                 "고양이 위로 나비와 사용 메모리량이 날아간다냥\n" +
                         "(종료를 원하면 엔터를 누르라냥)\n\n" +
@@ -33,4 +40,7 @@ public class CatModel {
         };
     }
 
+    private String[] getWakeUpCatFrame(double usedMemoryGb) {
+        return new String[]{};
+    }
 }
