@@ -1,7 +1,8 @@
 package com.cat.system;
 
 public class MemoryService {
-    public native String getMemoryUsage();
+
+    public native int getUsedMemory();
 
     static {
         try {
@@ -11,13 +12,12 @@ public class MemoryService {
         }
     }
 
-    // MemoryDTO 반환
-    public String getMemoryUsageSafe() {
+    public int getUsedMemorySafe() {
         try {
-            return getMemoryUsage();
+            return getUsedMemory();
         } catch (UnsatisfiedLinkError | RuntimeException e) {
             System.err.println(e.getMessage());
-            return "네이티브 코드에서 메모리 사용량 계측 실패!";
+            return -1; // 기본값 반환
         }
     }
 }
