@@ -1,7 +1,8 @@
 package com.cat.controller;
 
-import model.cat.CatModel;
-import view.CatView;
+
+import com.cat.model.cat.CatModel;
+import com.cat.view.CatView;
 
 public class MemoryCatController {
 
