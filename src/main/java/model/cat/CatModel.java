@@ -1,41 +1,32 @@
 package model.cat;
 
-public enum CatModel {
-    SLEEPING_CAT(Frame.SLEEPING_CAT_FRAME),
-    WAKEUP_CAT(Frame.WAKEUP_CAT_FRAME);
+public class CatModel {
 
-    private final String[] frame;
+    public String[] getSleepingCatFrame(String value) {
 
-    CatModel(String[] frame) {
-        this.frame = frame;
-    }
-
-    public String[] getFrame() {
-        return frame;
-    }
-
-    public static class Frame {
-        public static final String[] SLEEPING_CAT_FRAME = {
-                "고양이 위로 나비가 날아간다냥\n\n" +
-                        "       εїз\n\n" +
+        return new String[]{
+                "고양이 위로 나비가 날아간다냥\n" +
+                        "(종료를 원하면 엔터를 누르라냥)\n\n" +
+                        "       εїз..." + value + " MB" + "\n\n" +
                         "   ∧  ヘ\n" +
                         "  (  ̮  ̮  )\n" +
                         "   |_  _) \n" +
-                        "  ()し(~)〜〜\n",
-                "고양이 위로 나비가 날아간다냥\n\n" +
-                        "    εїз...\n\n" +
+                        "  ()し(~)__\n",
+                "고양이 위로 나비가 날아간다냥\n" +
+                        "(종료를 원하면 엔터를 누르라냥)\n\n" +
+                        "    εїз..." + value + " MB" + "\n\n" +
                         "   ∧  ヘ\n" +
                         "  (。  ̮  )\n" +
                         "  ∠    <) \n" +
-                        "  ()し(~)〜〜\n",
-                "고양이 위로 나비가 날아간다냥\n\n" +
-                        "  εїз.....\n\n" +
+                        "  ()し(~)_ノ\n",
+                "고양이 위로 나비가 날아간다냥\n" +
+                        "(종료를 원하면 엔터를 누르라냥)\n\n" +
+                        "  εїз..." + value + " MB" + "\n\n" +
                         "   ﾉヽ\n" +
                         "  (˚. 。 フ\n" +
                         "  ∠    >)  \n" +
-                        "  ()し(~)〜〜\n"
+                        "  ()し(~)_ノ\n"
         };
-
-        public static final String[] WAKEUP_CAT_FRAME = {};
     }
+
 }

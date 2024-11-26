@@ -9,10 +9,14 @@ public class MemoryCatController {
 
     public void runAnimation() {
         Thread animationThread = Thread.ofVirtual().start(() -> {
+            CatModel catModel = new CatModel();
+
+            String[] frameArray = catModel.getSleepingCatFrame(String.valueOf(16));
+
             try {
                 while (true) { // 무한 반복
-                    for (String frame : CatModel.SLEEPING_CAT.getFrame()) {
-                        view.clearLines(CatModel.SLEEPING_CAT.getFrame()[0].split("\n").length); // 이전 프레임 지우기
+                    for (String frame : frameArray) {
+                        view.clearLines(frameArray[0].split("\n").length); // 이전 프레임 지우기
                         view.displayFrame(frame); // 새로운 프레임 출력
                         Thread.sleep(750);
                     }
